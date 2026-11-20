@@ -1,0 +1,64 @@
+{
+ "roles": {
+  "public_health": {
+   "label": "Public-health surveillance officer",
+   "granularity": "district-day",
+   "k": 5,
+   "streams": [
+    "heat_visits",
+    "gi_visits",
+    "resp_visits",
+    "lab_gi_pos",
+    "absence",
+    "incidents"
+   ],
+   "env": true,
+   "actions": true,
+   "can_see_counts": true
+  },
+  "osh_inspector": {
+   "label": "OSH / labour inspectorate",
+   "granularity": "district-day",
+   "k": 5,
+   "streams": [
+    "heat_visits",
+    "resp_visits",
+    "absence",
+    "incidents"
+   ],
+   "env": true,
+   "actions": true,
+   "can_see_counts": true
+  },
+  "employer_hse": {
+   "label": "Employer HSE lead (own sector aggregate)",
+   "granularity": "district-week",
+   "k": 10,
+   "streams": [
+    "heat_visits",
+    "incidents",
+    "absence"
+   ],
+   "env": true,
+   "actions": false,
+   "can_see_counts": false
+  },
+  "policy_analyst": {
+   "label": "Policy / regulatory analyst",
+   "granularity": "district-month",
+   "k": 10,
+   "streams": [
+    "heat_visits",
+    "gi_visits",
+    "resp_visits",
+    "absence",
+    "incidents"
+   ],
+   "env": true,
+   "actions": false,
+   "can_see_counts": false
+  }
+ },
+ "k_default": 5,
+ "purpose": "Aggregate population-health surveillance only. Outputs must not be used for individual employment, disciplinary, immigration, visa or insurance decisions, nor to identify individual workers or employers as sources of illness."
+}

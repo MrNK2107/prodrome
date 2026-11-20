@@ -1,0 +1,17 @@
+out/scores.pkl
+out/server.log
+__pycache__/
+.playwright-mcp/
+.pytest_cache/
+video/work/
+out/theta.pkl
+.benchmarks/
+.env
+.env.*
+*.key
+video/audio/
+video/frames/
+# submission working files: only the final deck is published
+submission/*
+!submission/Prodrome_FutureHealth_Submission.pdf
+!submission/Prodrome_FutureHealth_Submission.pptx

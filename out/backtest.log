@@ -1,0 +1,274 @@
+scores ready 0 s
+{
+ "prodrome": {
+  "first_alert": {
+   "E34": "2024-04-14",
+   "E35": "2024-04-23",
+   "E36": "2024-04-24",
+   "E39": "2024-05-15",
+   "E40": "2024-05-22",
+   "E41": "2024-05-22",
+   "E42": "2024-06-11",
+   "E43": "2024-06-19",
+   "E44": "2024-07-01",
+   "E45": "2024-07-10",
+   "E46": "2024-08-02",
+   "E47": "2024-08-04",
+   "E48": "2024-08-12",
+   "E50": "2024-08-18",
+   "E51": "2024-08-29",
+   "E52": "2024-09-10",
+   "E55": "2024-09-24",
+   "E56": "2024-09-28",
+   "E58": "2024-10-17",
+   "E59": "2024-10-27",
+   "E60": "2024-11-02",
+   "E63": "2024-11-23"
+  },
+  "events": 32,
+  "detected": 22,
+  "sensitivity": 0.6875,
+  "alerts": 30,
+  "false_alerts": 8,
+  "ppv": 0.7333333333333333,
+  "fa_per_30d": 0.3283173734610123,
+  "median_detection_delay_days": 5.0,
+  "median_lead_before_peak_days": -3.0,
+  "median_event_share_after_alert": 0.4807692307692308,
+  "theta": 6.0,
+  "rho": 0.35,
+  "name": "Prodrome (fused, weather-adjusted)"
+ },
+ "no_corroboration_gate": {
+  "first_alert": {
+   "E34": "2024-04-10",
+   "E35": "2024-04-23",
+   "E36": "2024-04-24",
+   "E37": "2024-05-07",
+   "E39": "2024-05-15",
+   "E40": "2024-05-20",
+   "E41": "2024-05-22",
+   "E42": "2024-06-11",
+   "E43": "2024-06-19",
+   "E44": "2024-06-30",
+   "E45": "2024-07-08",
+   "E46": "2024-07-31",
+   "E47": "2024-08-04",
+   "E48": "2024-08-12",
+   "E50": "2024-08-18",
+   "E51": "2024-08-28",
+   "E52": "2024-09-09",
+   "E55": "2024-09-22",
+   "E56": "2024-09-27",
+   "E58": "2024-10-15",
+   "E59": "2024-10-25",
+   "E60": "2024-11-01",
+   "E61": "2024-11-02",
+   "E63": "2024-11-23",
+   "E64": "2024-12-03"
+  },
+  "events": 32,
+  "detected": 25,
+  "sensitivity": 0.78125,
+  "alerts": 52,
+  "false_alerts": 27,
+  "ppv": 0.4807692307692308,
+  "fa_per_30d": 1.1080711354309165,
+  "median_detection_delay_days": 4.0,
+  "median_lead_before_peak_days": -1.0,
+  "median_event_share_after_alert": 0.5714285714285714,
+  "theta": 6.0
+ },
+ "daily_single_stream": {
+  "first_alert": {
+   "E34": "2024-04-10",
+   "E36": "2024-04-20",
+   "E37": "2024-05-05",
+   "E40": "2024-05-20",
+   "E42": "2024-06-09",
+   "E51": "2024-08-30",
+   "E52": "2024-09-10",
+   "E56": "2024-09-29",
+   "E58": "2024-10-16"
+  },
+  "events": 32,
+  "detected": 9,
+  "sensitivity": 0.28125,
+  "alerts": 28,
+  "false_alerts": 19,
+  "ppv": 0.32142857142857145,
+  "fa_per_30d": 0.7797537619699042,
+  "median_detection_delay_days": 4.0,
+  "median_lead_before_peak_days": -2.0,
+  "median_event_share_after_alert": 0.5,
+  "threshold": 4.8000000000000025,
+  "name": "Daily single-stream threshold (no weather adj, no fusion)",
+  "classic_3sigma": {
+   "alerts": 264,
+   "false_alerts": 233,
+   "fa_per_30d": 9.562243502051983,
+   "sensitivity": 0.8125
+  }
+ },
+ "weekly_retrospective": {
+  "first_alert": {
+   "E34": "2024-04-16",
+   "E35": "2024-04-30",
+   "E36": "2024-04-25",
+   "E37": "2024-05-07",
+   "E40": "2024-05-28",
+   "E41": "2024-05-28",
+   "E45": "2024-07-09",
+   "E50": "2024-08-20",
+   "E51": "2024-09-03",
+   "E55": "2024-09-24",
+   "E56": "2024-10-01",
+   "E60": "2024-11-05",
+   "E61": "2024-11-05",
+   "E64": "2024-12-10"
+  },
+  "events": 32,
+  "detected": 14,
+  "sensitivity": 0.4375,
+  "alerts": 52,
+  "false_alerts": 37,
+  "ppv": 0.28846153846153844,
+  "fa_per_30d": 1.518467852257182,
+  "median_detection_delay_days": 8.0,
+  "median_lead_before_peak_days": -5.5,
+  "median_event_share_after_alert": 0.15476190476190477,
+  "threshold": 3.900000000000002,
+  "name": "Weekly retrospective single-stream review",
+  "classic_3sigma": {
+   "alerts": 104,
+   "false_alerts": 78,
+   "fa_per_30d": 3.20109439124487,
+   "sensitivity": 0.65625
+  }
+ },
+ "missing_input": {
+  "Baseline (all feeds)": {
+   "sensitivity": 0.6875,
+   "ppv": 0.7333333333333333,
+   "fa_per_30d": 0.3283173734610123,
+   "median_detection_delay_days": 5.0,
+   "median_lead_before_peak_days": -3.0,
+   "detected": 22,
+   "events": 32,
+   "alerts": 30,
+   "false_alerts": 8
+  },
+  "Lab feed offline": {
+   "sensitivity": 0.71875,
+   "ppv": 0.8846153846153846,
+   "fa_per_30d": 0.12311901504787962,
+   "median_detection_delay_days": 5.0,
+   "median_lead_before_peak_days": -3.0,
+   "detected": 23,
+   "events": 32,
+   "alerts": 26,
+   "false_alerts": 3
+  },
+  "Sickness-absence feed offline": {
+   "sensitivity": 0.5,
+   "ppv": 0.6666666666666666,
+   "fa_per_30d": 0.3283173734610123,
+   "median_detection_delay_days": 6.0,
+   "median_lead_before_peak_days": -3.0,
+   "detected": 16,
+   "events": 32,
+   "alerts": 24,
+   "false_alerts": 8
+  },
+  "Incident-report feed offline": {
+   "sensitivity": 0.625,
+   "ppv": 0.8333333333333334,
+   "fa_per_30d": 0.16415868673050615,
+   "median_detection_delay_days": 5.5,
+   "median_lead_before_peak_days": -3.0,
+   "detected": 20,
+   "events": 32,
+   "alerts": 24,
+   "false_alerts": 4
+  },
+  "All clinical + lab feeds offline (workplace only)": {
+   "sensitivity": 0.0,
+   "ppv": 0.0,
+   "fa_per_30d": 0.0,
+   "median_detection_delay_days": null,
+   "median_lead_before_peak_days": null,
+   "detected": 0,
+   "events": 32,
+   "alerts": 0,
+   "false_alerts": 0
+  },
+  "Environmental feed offline (no weather adjustment)": {
+   "sensitivity": 0.71875,
+   "ppv": 0.7419354838709677,
+   "fa_per_30d": 0.3283173734610123,
+   "median_detection_delay_days": 5.0,
+   "median_lead_before_peak_days": -3.0,
+   "detected": 23,
+   "events": 32,
+   "alerts": 31,
+   "false_alerts": 8
+  },
+  "20% random daily data gaps in every feed": {
+   "sensitivity": 0.625,
+   "ppv": 0.7692307692307693,
+   "fa_per_30d": 0.24623803009575923,
+   "median_detection_delay_days": 5.0,
+   "median_lead_before_peak_days": -3.0,
+   "detected": 20,
+   "events": 32,
+   "alerts": 26,
+   "false_alerts": 6
+  },
+  "Reporting latency doubled": {
+   "sensitivity": 0.6875,
+   "ppv": 0.6875,
+   "fa_per_30d": 0.4103967168262654,
+   "median_detection_delay_days": 7.0,
+   "median_lead_before_peak_days": -5.0,
+   "detected": 22,
+   "events": 32,
+   "alerts": 32,
+   "false_alerts": 10
+  }
+ },
+ "strata": {
+  "type": {
+   "chemical_exposure": {
+    "n": 8,
+    "detected": 8
+   },
+   "gi_outbreak": {
+    "n": 8,
+    "detected": 5
+   },
+   "heat_cluster": {
+    "n": 8,
+    "detected": 2
+   },
+   "resp_cluster": {
+    "n": 8,
+    "detected": 7
+   }
+  },
+  "magnitude": {
+   "weak (<=0.7)": {
+    "n": 9,
+    "detected": 3
+   },
+   "moderate (1.0-1.4)": {
+    "n": 12,
+    "detected": 9
+   },
+   "strong (>=2.0)": {
+    "n": 11,
+    "detected": 10
+   }
+  }
+ }
+}
+total 2 s

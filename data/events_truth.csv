@@ -1,0 +1,65 @@
+id,type,district,onset,duration,ramp,magnitude
+E01,heat_cluster,Saadiyat-Yas,2023-04-06,7,4,2.0
+E02,gi_outbreak,Al Ain Industrial,2023-04-16,7,4,1.4
+E03,chemical_exposure,Mussafah,2023-04-23,9,5,2.0
+E04,resp_cluster,ICAD,2023-04-27,13,5,0.7
+E05,heat_cluster,Saadiyat-Yas,2023-05-04,14,3,2.0
+E06,gi_outbreak,Mussafah,2023-05-12,12,5,0.7
+E07,chemical_exposure,Ruwais,2023-05-18,13,5,0.5
+E08,resp_cluster,Saadiyat-Yas,2023-05-23,12,4,1.4
+E09,heat_cluster,Ruwais,2023-06-03,7,5,0.7
+E10,gi_outbreak,Mussafah,2023-06-16,8,5,0.7
+E11,chemical_exposure,Ruwais,2023-06-17,10,4,2.8
+E12,resp_cluster,Saadiyat-Yas,2023-06-22,11,5,1.0
+E13,heat_cluster,Mussafah,2023-07-04,14,3,2.8
+E14,gi_outbreak,Al Dhafra,2023-07-10,8,4,1.4
+E15,chemical_exposure,Mussafah,2023-07-26,13,5,1.4
+E16,resp_cluster,Saadiyat-Yas,2023-07-29,10,5,1.0
+E17,heat_cluster,Ruwais,2023-08-04,12,5,0.5
+E18,gi_outbreak,Al Ain Industrial,2023-08-08,10,3,2.8
+E19,chemical_exposure,Mussafah,2023-08-14,9,5,1.4
+E20,resp_cluster,Saadiyat-Yas,2023-08-27,9,5,1.4
+E21,heat_cluster,Ruwais,2023-08-28,14,3,1.0
+E22,gi_outbreak,Al Ain Industrial,2023-08-29,12,3,0.5
+E23,chemical_exposure,ICAD,2023-09-11,9,5,2.0
+E24,resp_cluster,Khalifa City,2023-09-24,12,4,1.0
+E25,heat_cluster,Mussafah,2023-09-25,11,4,1.0
+E26,gi_outbreak,Saadiyat-Yas,2023-09-29,8,5,1.0
+E27,chemical_exposure,ICAD,2023-10-09,12,4,0.7
+E28,resp_cluster,Mussafah,2023-10-10,12,3,1.0
+E29,heat_cluster,Ruwais,2023-10-27,12,5,2.0
+E30,gi_outbreak,Mussafah,2023-11-16,14,5,2.0
+E31,chemical_exposure,Mussafah,2023-12-01,11,5,0.5
+E32,resp_cluster,Saadiyat-Yas,2023-12-03,8,3,0.5
+E33,heat_cluster,Saadiyat-Yas,2024-04-03,9,4,1.4
+E34,gi_outbreak,Ruwais,2024-04-06,12,5,1.4
+E35,chemical_exposure,ICAD,2024-04-20,11,3,1.4
+E36,resp_cluster,Khalifa City,2024-04-21,10,3,2.0
+E37,heat_cluster,Saadiyat-Yas,2024-04-25,14,5,0.5
+E38,gi_outbreak,Ruwais,2024-05-01,11,4,1.0
+E39,chemical_exposure,ICAD,2024-05-12,7,3,2.0
+E40,resp_cluster,Mussafah,2024-05-17,9,3,2.0
+E41,heat_cluster,Saadiyat-Yas,2024-05-20,13,3,2.0
+E42,gi_outbreak,Ruwais,2024-06-06,10,3,1.4
+E43,chemical_exposure,ICAD,2024-06-16,11,5,1.4
+E44,resp_cluster,Khalifa City,2024-06-26,7,4,2.0
+E45,heat_cluster,Al Ain Industrial,2024-07-03,13,4,2.0
+E46,gi_outbreak,Ruwais,2024-07-22,10,5,0.7
+E47,chemical_exposure,ICAD,2024-07-26,10,4,0.7
+E48,resp_cluster,Khalifa City,2024-08-04,11,4,1.0
+E49,heat_cluster,Ruwais,2024-08-08,8,3,1.0
+E50,gi_outbreak,Saadiyat-Yas,2024-08-13,11,3,1.0
+E51,chemical_exposure,Mussafah,2024-08-26,8,3,2.0
+E52,resp_cluster,ICAD,2024-09-05,10,3,1.4
+E53,heat_cluster,Saadiyat-Yas,2024-09-08,9,3,0.7
+E54,gi_outbreak,Al Ain Industrial,2024-09-11,9,5,0.5
+E55,chemical_exposure,Ruwais,2024-09-16,9,5,1.4
+E56,resp_cluster,Saadiyat-Yas,2024-09-24,9,3,2.0
+E57,heat_cluster,Mussafah,2024-10-06,14,3,0.7
+E58,gi_outbreak,Ruwais,2024-10-11,8,4,2.8
+E59,chemical_exposure,ICAD,2024-10-19,12,3,1.0
+E60,resp_cluster,Mussafah,2024-10-28,13,4,0.7
+E61,heat_cluster,Al Ain Industrial,2024-10-30,7,4,2.0
+E62,gi_outbreak,Ruwais,2024-11-05,10,3,0.5
+E63,chemical_exposure,Mussafah,2024-11-19,7,5,2.0
+E64,resp_cluster,Saadiyat-Yas,2024-11-28,12,4,0.5

@@ -1,0 +1,48 @@
+{
+ "voice_id": "iP95p4xoKVk53GoZ742B",
+ "model_id": "eleven_multilingual_v2",
+ "voice_settings": {
+  "stability": 0.38,
+  "similarity_boost": 0.75,
+  "style": 0,
+  "use_speaker_boost": true
+ },
+ "segments": [
+  {
+   "id": "s1",
+   "text": "Heat stress, a stomach bug, a chemical leak. The first signs rarely show up in one dataset. A few extra clinic visits here, some sick days there, a couple of incident reports. Reviewed separately, or only on a Monday, nobody connects them until the problem has already grown. This is Prodrome."
+  },
+  {
+   "id": "s2",
+   "text": "Prodrome watches clinic visits, lab results, sickness absence, incident reports, and real heat and air quality readings, district by district. It learns what normal looks like for each district given the weather, so a hot week on its own doesn't set it off. Here, in Al Ain Industrial, incident reports are running about two and a half times what's expected, and heat illness clinic visits nearly three times. Two different kinds of signal, agreeing. That's what opens an alert."
+  },
+  {
+   "id": "s3",
+   "text": "And it shows its working. Which signals drove the alert, observed versus expected, and how much of the rise the weather already explains. The response is proportionate. It opens as a watch, becomes an advisory the next day, and a full action on day three, restricting outdoor work hours, with the responsible role named. The safety regulator, with a public health officer. Not a person. Not an employer. A district, a hazard, and a human who checks."
+  },
+  {
+   "id": "s4",
+   "text": "It also shows its mistakes. This one is a false alarm. We tune the system to an alert budget, about one false alert a month across the whole emirate, because an alert that cries wolf gets ignored. A classic three sigma rule on every feed would fire nearly ten false alerts every month."
+  },
+  {
+   "id": "s5",
+   "text": "We back tested on two held out years of simulated outbreaks, with thresholds frozen from the year before. Prodrome caught sixty nine percent of events, and seventy three percent of its alerts were real. It fired three days earlier than a weekly review, which caught only forty four percent. Strong events, ten out of eleven. Heat clusters were the weakest, two out of eight, and we say so."
+  },
+  {
+   "id": "s6",
+   "text": "What if data goes missing? Lose the lab feed or the environment feed and it barely moves. Twenty percent of days missing in every feed, and it still catches sixty two percent. If every clinical feed goes dark, it fails silent rather than guess. And a single faulty feed, like a duplicated upload, sets off an alert only about a quarter of the time. Without cross checking, it's eighty four percent."
+  },
+  {
+   "id": "s7",
+   "text": "Privacy is built in, not bolted on. Only district level aggregates exist. No names, no employers, no coordinates. Counts under five are suppressed. And every role gets its own data file. An employer sees weekly bands. A policy analyst sees monthly trends. And nothing here can be used for individual or disciplinary decisions."
+  },
+  {
+   "id": "s8",
+   "text": "If acting early avoids even thirty percent of what's still ahead, Prodrome averts more than four times as many illness visits, incidents and lost workdays as a weekly review, in our simulation. And every alert leaves an evidence trail for regulators."
+  },
+  {
+   "id": "s9",
+   "text": "To be clear, the health data here is simulated, because none was provided. The weather is real. The value is the method, the equal budget comparison, and the stress tests. Prodrome. From signals to action, before the burden grows."
+  }
+ ]
+}

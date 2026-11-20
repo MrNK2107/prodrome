@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prodrome – Population & Workforce Health Early Warning</title>
+<style>
+:root{
+  --bg:#f5f3ee; --panel:#ffffff; --ink:#1c2430; --mute:#5d6877; --line:#e1ddd3; --soft:#efece4;
+  --teal:#0e7c86; --teal-d:#0a5c64; --amber:#b86e00; --red:#b3261e; --green:#2e7d4f; --blue:#2a5db0;
+  --watch:#d8a21a; --adv:#e07b1a; --act:#c4281f; --ok:#9bb7ae;
+  --shadow:0 1px 2px rgba(20,30,40,.06),0 4px 14px rgba(20,30,40,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--bg:#10161c;--panel:#18212a;--ink:#e8edf2;--mute:#9aa6b4;--line:#2a3541;--soft:#1f2a34;--teal:#35b6c2;--teal-d:#6fd0da;--amber:#e0a040;--red:#ef6f66;--green:#5fbf88;--blue:#7ba3e8;--ok:#4b6a66;--shadow:none}
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 "Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif}
+header{position:sticky;top:0;z-index:5;background:var(--panel);border-bottom:1px solid var(--line);padding:10px 16px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.brand{display:flex;align-items:baseline;gap:10px}
+.brand b{font-size:20px;letter-spacing:.4px;color:var(--teal-d)}
+.brand span{color:var(--mute);font-size:12.5px}
+nav{display:flex;gap:2px;flex-wrap:wrap;margin-left:auto}
+nav button{border:0;background:transparent;color:var(--mute);padding:8px 12px;border-radius:8px;font:inherit;cursor:pointer}
+nav button.on{background:var(--soft);color:var(--ink);font-weight:600}
+.role{display:flex;gap:6px;align-items:center;font-size:12.5px;color:var(--mute)}
+select,input[type=range]{font:inherit}
+select{padding:5px 8px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink)}
+.banner{background:var(--soft);border-bottom:1px solid var(--line);padding:6px 16px;font-size:12px;color:var(--mute)}
+main{max-width:1280px;margin:0 auto;padding:14px 16px 60px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:start}
+@media(max-width:980px){.g2{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;box-shadow:var(--shadow)}
+.card h3{margin:0 0 8px;font-size:13px;text-transform:uppercase;letter-spacing:.7px;color:var(--mute);font-weight:600}
+h2{margin:4px 0 10px;font-size:18px}
+.mute{color:var(--mute)} .small{font-size:12px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11.5px;font-weight:600;color:#fff}
+.t-Watch{background:var(--watch)} .t-Advisory{background:var(--adv)} .t-Action{background:var(--act)}
+.chip{display:inline-block;padding:2px 8px;border-radius:6px;background:var(--soft);font-size:12px;color:var(--mute)}
+.alert{display:block;width:100%;text-align:left;border:1px solid var(--line);background:var(--panel);color:inherit;border-radius:10px;padding:10px 12px;margin-bottom:8px;cursor:pointer;font:inherit}
+.alert.sel{outline:2px solid var(--teal);border-color:transparent}
+.alert .top{display:flex;gap:8px;align-items:center;justify-content:space-between}
+.alert b{font-size:14px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-size:11.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--mute);font-weight:600}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+.bar{height:10px;border-radius:5px;background:var(--soft);overflow:hidden;min-width:60px}
+.bar i{display:block;height:100%;background:var(--teal)}
+.stack{display:flex;height:16px;border-radius:6px;overflow:hidden;background:var(--soft)}
+.stack i{display:block;height:100%}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--mute);margin-top:6px}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;background:var(--c)}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.kpi div{background:var(--soft);border-radius:10px;padding:10px 12px}
+.kpi b{display:block;font-size:22px;font-variant-numeric:tabular-nums}
+.kpi span{font-size:12px;color:var(--mute)}
+.note{border-left:3px solid var(--amber);padding:6px 10px;background:var(--soft);border-radius:0 8px 8px 0;font-size:12.5px;color:var(--mute);margin:8px 0}
+svg text{font-family:inherit}
+.ctrl{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ctrl button{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:5px 11px;border-radius:8px;cursor:pointer;font:inherit}
+.ctrl button.pri{background:var(--teal);color:#fff;border-color:var(--teal)}
+input[type=range]{accent-color:var(--teal)}
+.hidden{display:none}
+.tag-sim{background:#6a4bb8;color:#fff}
+.scen{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.scen button{border:1px solid var(--line);background:var(--soft);color:var(--ink);border-radius:8px;padding:4px 9px;font-size:12px;cursor:pointer}
+.kv{display:grid;grid-template-columns:150px 1fr;gap:4px 10px;font-size:13px}
+.kv div:nth-child(odd){color:var(--mute)}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><b>PRODROME</b><span>Population &amp; workforce health early warning · Abu Dhabi emirate · prototype</span></div>
+  <div class="role">View as
+    <select id="roleSel"></select>
+  </div>
+  <nav id="tabs"></nav>
+</header>
+<div class="banner" id="banner"></div>
+<main id="app"></main>
+
+<script>
+const TABS=[["live","Live replay"],["bt","Back-test"],["miss","Missing data"],["priv","Privacy & roles"],["impact","Impact"],["about","Method"]];
+const STREAM_COL={heat_visits:"#c4281f",gi_visits:"#8a5a2b",resp_visits:"#2a5db0",lab_gi_pos:"#6a4bb8",absence:"#0e7c86",incidents:"#b86e00"};
+let D=null, ROLES=null, state={tab:"live",role:"public_health",day:0,sel:null,district:null,play:null,eff:0.30};
+const $=s=>document.querySelector(s), el=(t,a={},h="")=>{const e=document.createElement(t);Object.assign(e,a);if(h)e.innerHTML=h;return e};
+const fmt=(x,d=1)=>x==null?"–":Number(x).toFixed(d), pct=x=>x==null?"–":Math.round(x*100)+"%";
+const tcol=t=>t==="Action"?"var(--act)":t==="Advisory"?"var(--adv)":"var(--watch)";
+
+async function load(role){
+  const r=await fetch(`data_${role}.json`,{cache:"no-cache"}); D=await r.json();
+  state.role=role; if(state.district==null||!D.districts.find(d=>d.name===state.district)) state.district=D.districts[0].name;
+  render();
+}
+async function init(){
+  ROLES=(await (await fetch("roles.json",{cache:"no-cache"})).json()).roles;
+  const sel=$("#roleSel"); Object.entries(ROLES).forEach(([k,v])=>sel.append(el("option",{value:k,textContent:v.label})));
+  sel.onchange=()=>{stopPlay();load(sel.value)};
+  const nav=$("#tabs"); TABS.forEach(([k,l])=>{const b=el("button",{textContent:l,onclick:()=>{state.tab=k;stopPlay();render()}});b.dataset.k=k;nav.append(b)});
+  await load("public_health");
+  // default scenario: first strong true-positive alert
+  const hs=(D.alerts||[]).filter(a=>a.hazard==="heat_stress"&&a.truth&&a.tiers.some(x=>x[1]!=="Watch")).sort((x,y)=>y.peak_score-x.peak_score)[0]||(D.alerts||[]).find(a=>a.truth); if(hs){state.day=hs.open_i;state.sel=hs.id;state.district=hs.district}
+  render();
+}
+function stopPlay(){if(state.play){clearInterval(state.play);state.play=null}}
+function render(){
+  document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.k===state.tab));
+  $("#banner").textContent=D.purpose+"  ·  Signals: real Open-Meteo weather/air-quality + SYNTHETIC aggregate clinic/lab/absence/incident counts (no organiser data supplied).";
+  const app=$("#app"); app.innerHTML="";
+  ({live:viewLive,bt:viewBacktest,miss:viewMissing,priv:viewPrivacy,impact:viewImpact,about:viewAbout})[state.tab](app);
+}
+
+/* ---------- helpers: charts ---------- */
+function lineChart({w=560,h=150,series,xs,theta,shade,marker,ymax,pad=[28,10,18,34],yLabel=""}){
+  const [pt,pr,pb,pl]=pad; const n=xs.length; let max=ymax||0; series.forEach(s=>s.v.forEach(v=>{if(v!=null&&v>max)max=v})); if(theta&&theta*1.15>max)max=theta*1.15; max=max||1;
+  const X=i=>pl+(w-pl-pr)*i/(Math.max(n-1,1)), Y=v=>pt+(h-pt-pb)*(1-v/max);
+  let s=`<svg viewBox="0 0 ${w} ${h}" width="100%" role="img">`;
+  for(let k=0;k<=3;k++){const v=max*k/3;s+=`<line x1="${pl}" x2="${w-pr}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--line)"/><text x="${pl-4}" y="${Y(v)+3}" font-size="10" fill="var(--mute)" text-anchor="end">${v>=10?Math.round(v):v.toFixed(1)}</text>`}
+  if(shade)shade.forEach(([a,b,c])=>{s+=`<rect x="${X(a)}" y="${pt}" width="${Math.max(X(b)-X(a),2)}" height="${h-pt-pb}" fill="${c||"var(--act)"}" opacity=".12"/>`});
+  if(theta!=null)s+=`<line x1="${pl}" x2="${w-pr}" y1="${Y(theta)}" y2="${Y(theta)}" stroke="var(--act)" stroke-dasharray="4 3"/><text x="${w-pr}" y="${Y(theta)-3}" font-size="10" fill="var(--act)" text-anchor="end">alert threshold</text>`;
+  series.forEach(sr=>{let d="",open=false;sr.v.forEach((v,i)=>{if(v==null){open=false;return}d+=(open?"L":"M")+X(i).toFixed(1)+" "+Y(v).toFixed(1);open=true});
+    s+=`<path d="${d}" fill="none" stroke="${sr.c}" stroke-width="${sr.w||1.6}" ${sr.dash?`stroke-dasharray="${sr.dash}"`:""}/>`;
+    if(sr.dots)sr.v.forEach((v,i)=>{if(sr.flag&&sr.flag[i])s+=`<rect x="${X(i)-2}" y="${h-pb-5}" width="4" height="5" fill="var(--mute)" opacity=".55"/>`})});
+  if(marker!=null)s+=`<line x1="${X(marker)}" x2="${X(marker)}" y1="${pt}" y2="${h-pb}" stroke="var(--ink)" stroke-width="1.2"/>`;
+  const step=Math.ceil(n/6);for(let i=0;i<n;i+=step)s+=`<text x="${X(i)}" y="${h-4}" font-size="10" fill="var(--mute)" text-anchor="middle">${xs[i].slice(5)}</text>`;
+  if(yLabel)s+=`<text x="2" y="10" font-size="10" fill="var(--mute)">${yLabel}</text>`;
+  return s+"</svg>";
+}
+function openAlertsAt(day){return (D.alerts||[]).filter(a=>a.open_i<=day&&day<=a.close_i)}
+function tierAt(a,day){let t=a.tier;for(const [d,ti] of (a.tiers||[])){if(d<=day)t=ti;else break}return t}
+function tierRank(t){return t==="Action"?3:t==="Advisory"?2:1}
+function districtState(name,day){
+  const oa=openAlertsAt(day).filter(a=>a.district===name).sort((a,b)=>tierRank(tierAt(b,day))-tierRank(tierAt(a,day)));
+  return oa[0]||null;
+}
+
+/* ---------- LIVE ---------- */
+function viewLive(app){
+  const hasCounts=!!(D.series[D.districts[0].name].streams);
+  const top=el("div",{className:"card"});
+  top.innerHTML=`<div class="row" style="justify-content:space-between"><div><h2 style="margin:0">Near-real-time replay</h2><span class="mute small">Day-by-day, using only data that would have been available on that day (per-feed reporting latency applied). Test period ${D.dates[0]} → ${D.dates[D.dates.length-1]}, thresholds frozen from 2023 calibration.</span></div><div class="ctrl"><button id="prev">◀</button><button class="pri" id="play">▶ Play</button><button id="next">▶|</button><button id="nxtA">Next alert ⇥</button></div></div>
+  <div class="row" style="margin-top:10px"><input id="day" type="range" min="0" max="${D.dates.length-1}" value="${state.day}" style="flex:1;min-width:240px"><b id="dlabel" style="min-width:110px;text-align:right"></b></div>
+  <div class="scen" id="scen"></div>`;
+  app.append(top);
+  const g=el("div",{className:"grid g2",style:"margin-top:14px"});app.append(g);
+  const left=el("div",{className:"grid"}),right=el("div",{className:"grid"});g.append(left,right);
+  const mapc=el("div",{className:"card"});mapc.innerHTML=`<h3>District risk map (schematic)</h3><div id="map"></div><div class="legend"><span style="--c:var(--ok)">normal</span><span style="--c:var(--watch)">watch</span><span style="--c:var(--adv)">advisory</span><span style="--c:var(--act)">action</span></div><div class="small mute" style="margin-top:6px">Circle size ∝ covered workforce. District-level only – no site, employer or person locations exist in this system.</div>`;
+  const qc=el("div",{className:"card"});qc.innerHTML=`<h3>Open alerts <span class="chip" id="qcount"></span></h3><div id="queue"></div>`;
+  left.append(mapc,qc);
+  const det=el("div",{className:"card",id:"detail"});right.append(det);
+  const trend=el("div",{className:"card",id:"trend"});right.append(trend);
+
+  const scen=$("#scen"); scen.append(el("span",{className:"small mute",textContent:"Jump to a scenario: ",style:"align-self:center"}));
+  const picks=[];["heat_stress","gi_outbreak","chemical_exposure","respiratory_cluster"].forEach(h=>{const a=(D.alerts||[]).filter(x=>x.hazard===h&&x.truth&&x.tiers.some(z=>z[1]!=="Watch")).sort((x,y)=>y.peak_score-x.peak_score)[0]||(D.alerts||[]).find(x=>x.hazard===h&&x.truth);if(a)picks.push(a)});
+  const fa=(D.alerts||[]).find(x=>!x.truth);if(fa)picks.push(fa);
+  picks.forEach(a=>scen.append(el("button",{textContent:(a.truth?"":"False alarm: ")+a.hazard_label+" · "+a.district+" · "+a.open,onclick:()=>{state.day=Math.max(0,a.open_i-3);state.sel=a.id;state.district=a.district;stopPlay();update()}})));
+  $("#day").oninput=e=>{state.day=+e.target.value;state.sel=null;update()};
+  $("#prev").onclick=()=>{state.day=Math.max(0,state.day-1);update()};$("#next").onclick=()=>{state.day=Math.min(D.dates.length-1,state.day+1);update()};
+  $("#nxtA").onclick=()=>{const a=(D.alerts||[]).find(x=>x.open_i>state.day);if(a){state.day=a.open_i;state.sel=a.id;state.district=a.district;update()}};
+  $("#play").onclick=()=>{if(state.play){stopPlay();$("#play").textContent="▶ Play"}else{$("#play").textContent="❚❚ Pause";state.play=setInterval(()=>{if(state.day>=D.dates.length-1){stopPlay();return}state.day++;update()},260)}};
+  update();
+}
+function update(){
+  const day=state.day; $("#day").value=day; $("#dlabel").textContent=D.dates[day];
+  // map
+  const W=100,H=75;let s=`<svg viewBox="0 0 ${W} ${H}" width="100%"><rect width="${W}" height="${H}" rx="3" fill="var(--soft)"/>`;
+  s+=`<path d="M0 66 C20 60 40 70 60 62 S90 66 100 60 L100 75 L0 75Z" fill="#a9c9d6" opacity=".35"/><text x="4" y="72" font-size="3" fill="var(--mute)">Arabian Gulf</text>`;
+  D.districts.forEach(d=>{const a=districtState(d.name,day);const sc=D.series[d.name].risk[day];const col=a?tcol(tierAt(a,day)):(sc>=D.theta*.5?"var(--watch)":"var(--ok)");const r=2.6+Math.sqrt(d.workers/1000)/9;
+    s+=`<g style="cursor:pointer" onclick="selDistrict('${d.name}')"><circle cx="${d.pos[0]}" cy="${d.pos[1]}" r="${r}" fill="${col}" opacity=".85" stroke="${state.district===d.name?"var(--ink)":"none"}" stroke-width=".8"/><text x="${d.pos[0]}" y="${d.pos[1]+r+3.2}" font-size="2.9" text-anchor="middle" fill="var(--ink)">${d.name}</text></g>`});
+  $("#map").innerHTML=s+"</svg>";
+  // queue
+  const oa=openAlertsAt(day).sort((a,b)=>tierRank(tierAt(b,day))-tierRank(tierAt(a,day)));$("#qcount").textContent=oa.length;
+  const q=$("#queue");q.innerHTML=oa.length?"":`<div class="mute">No open alerts on ${D.dates[day]}. Normal operating state – the system is deliberately quiet most days (alert budget ≤ 1 false alert / 30 days system-wide).</div>`;
+  oa.forEach(a=>{const b=el("button",{className:"alert"+(state.sel===a.id?" sel":"")});b.innerHTML=`<div class="top"><b>${a.hazard_label}</b><span class="pill t-${tierAt(a,day)}">${tierAt(a,day)}</span></div><div class="small mute">${a.district} · opened ${a.open}${a.score!=null?` · evidence ${fmt(a.score)} / threshold ${fmt(D.theta,0)}`:""}</div>`;b.onclick=()=>{state.sel=a.id;state.district=a.district;update()};q.append(b)});
+  if(!state.sel&&oa[0]){state.sel=oa[0].id;state.district=oa[0].district} if(state.sel&&!(D.alerts||[]).find(a=>a.id===state.sel))state.sel=null;
+  renderDetail(); renderTrend();
+}
+window.selDistrict=n=>{state.district=n;const a=districtState(n,state.day);if(a)state.sel=a.id;update()};
+function renderDetail(){
+  const c=$("#detail");const a=(D.alerts||[]).find(x=>x.id===state.sel);const cur=a?tierAt(a,state.day):null;
+  if(!a){c.innerHTML=`<h3>Alert detail</h3><div class="mute">Select an open alert, or press <b>Next alert</b> / pick a scenario above.</div>`;return}
+  if(!a.evidence){c.innerHTML=`<h3>Alert detail</h3><div class="row"><b>${a.hazard_label}</b><span class="pill t-${cur}">${cur}</span></div><div class="mute small" style="margin-top:6px">${a.district} · ${a.open} → ${a.close}</div><div class="note">Your role sees <b>that</b> elevated risk existed, not the operational evidence, counts or recommended actions. This is by design (least-privilege).</div>`;return}
+  const cols={service:"#2a5db0",laboratory:"#6a4bb8",workplace:"#0e7c86"};
+  const ev=a.evidence.map(e=>`<tr><td><b>${e.name}</b><div class="small mute">${e.group} · feed latency ${e.lag_days}d</div></td><td class="n">${fmt(e.observed,0)}</td><td class="n">${fmt(e.expected,1)}</td><td class="n"><b>${fmt(e.ratio,1)}×</b></td><td class="n">${e.weather_explained==null?"n/a":pct(e.weather_explained)}</td></tr>`).join("");
+  const stack=Object.entries(a.contrib).filter(([,v])=>v>.01).sort((x,y)=>y[1]-x[1]).map(([s,v])=>`<i title="${D.stream_names[s]} ${pct(v)}" style="width:${v*100}%;background:${STREAM_COL[s]}"></i>`).join("");
+  const leg=Object.entries(a.contrib).filter(([,v])=>v>.01).sort((x,y)=>y[1]-x[1]).map(([s,v])=>`<span style="--c:${STREAM_COL[s]}">${D.stream_names[s]} ${pct(v)}</span>`).join("");
+  const truth=a.truth?`<div class="note" style="border-color:#6a4bb8"><span class="pill tag-sim">SIMULATION GROUND TRUTH</span> Injected ${a.truth.type.replace("_"," ")} event ${a.truth.id}, onset ${a.truth.onset}, magnitude ${a.truth.magnitude}. Hazard type ${a.truth.hazard_correct?"correctly":"INCORRECTLY"} identified. <span class="mute">(Not available in live use – shown only to validate the prototype.)</span></div>`:`<div class="note" style="border-color:#6a4bb8"><span class="pill tag-sim">SIMULATION GROUND TRUTH</span> No injected event overlaps this alert → <b>false alarm</b>. Shown deliberately: the alert budget is an explicit trade-off, not a promise of zero false alarms.</div>`;
+  c.innerHTML=`<h3>Why this alert fired</h3>
+  <div class="row" style="justify-content:space-between"><div><b style="font-size:17px">${a.hazard_label}</b> <span class="mute">in ${a.district}</span></div><span class="pill t-${cur}" style="font-size:13px">${cur} as of ${D.dates[state.day]}</span></div>
+  <div class="kv" style="margin:10px 0"><div>Opened</div><div>${a.open} at tier ${a.tier} (evidence ${fmt(a.score)} vs threshold ${fmt(a.theta,0)}; peak ${fmt(a.peak_score)})</div><div>Corroboration</div><div>${a.active_streams} independent feeds elevated at opening, across ≥2 signal families</div><div>Escalation path</div><div>${a.tiers.map(([d,t])=>t+" ("+D.dates[d].slice(5)+")").join(" → ")}</div><div>Hazard match</div><div>signature margin ${a.hazard_margin}${a.wbgt_hi?" · work-hours WBGT ≥ 31 °C in window":""}</div></div>
+  <div class="small mute">Which signals drove it (share of evidence)</div><div class="stack" style="margin:4px 0">${stack}</div><div class="legend">${leg}</div>
+  <table style="margin-top:10px"><thead><tr><th>Signal (last 3 available days)</th><th class="n">Obs.</th><th class="n">Expected*</th><th class="n">Ratio</th><th class="n">Weather explains</th></tr></thead><tbody>${ev}</tbody></table>
+  <div class="small mute">*Expected = weather-adjusted seasonal baseline for this district. "Weather explains" = share of the rise vs a weather-blind baseline already accounted for by heat/dust – so heat-waves alone do not page anyone.</div>
+  <div class="card" style="background:var(--soft);box-shadow:none;margin-top:12px"><h3 style="margin-bottom:4px">Recommended proportionate action</h3><div style="font-size:15px"><b>${a.playbook[cur].action}</b></div><div class="kv" style="margin-top:8px"><div>Responsible role</div><div><b>${a.playbook[cur].role}</b></div><div>Escalation</div><div>${cur==="Watch"?"Monitor; no field action. Auto-escalates if evidence grows.":cur==="Advisory"?"Targeted, low-cost verification in this district only.":"Full response warranted: ≥3 corroborating feeds and evidence ≥2.2× threshold."}</div><div>Assumptions</div><div class="small">Feeds are district aggregates; ${a.evidence.map(e=>e.name.toLowerCase()+" lags "+e.lag_days+"d").join("; ")}. Baseline learned from the trailing 365 days with past outbreaks down-weighted. Decision support only – a named human role decides and verifies in the field.</div></div></div>
+  ${truth}`;
+}
+function renderTrend(){
+  const c=$("#trend");const d=state.district, S=D.series[d];const day=state.day;const lo=Math.max(0,day-45),hi=Math.min(D.dates.length-1,day+10);
+  const xs=D.dates.slice(lo,hi+1);const mk=day-lo;
+  const shade=(D.alerts||[]).filter(a=>a.district===d&&a.close_i>=lo&&a.open_i<=hi).map(a=>[Math.max(a.open_i,lo)-lo,Math.min(a.close_i,hi)-lo,tcol(a.tier)]);
+  let html=`<h3>${d} · last 45 days</h3><div class="small mute">Fused evidence score (all feeds) with alert threshold. Shaded = open alert.</div>`+lineChart({xs,series:[{v:S.risk.slice(lo,hi+1),c:"var(--teal)",w:2}],theta:D.theta,shade,marker:mk,h:130,yLabel:"evidence"});
+  if(S.streams){
+    html+=`<div class="small mute" style="margin-top:6px">Observed (solid) vs weather-adjusted expected (dashed) – ${D.role==="osh_inspector"?"your streams":"per signal"}; grey ticks mark days suppressed (counts 1–${D.k-1}).</div><div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:6px">`;
+    Object.entries(S.streams).forEach(([s,v])=>{html+=`<div><div class="small"><b style="color:${STREAM_COL[s]}">●</b> ${D.stream_names[s]}</div>`+lineChart({xs,w:300,h:84,pad:[8,6,16,26],series:[{v:v.expected.slice(lo,hi+1),c:STREAM_COL[s],dash:"3 3",w:1.2},{v:v.observed.slice(lo,hi+1),c:STREAM_COL[s],w:1.8,dots:true,flag:v.suppressed.slice(lo,hi+1)}],shade,marker:mk})+`</div>`});
+    html+="</div>";
+    if(S.wbgt_max)html+=`<div class="small mute" style="margin-top:6px">Environment (real Open-Meteo): work-hours WBGT proxy °C · PM10 µg/m³</div>`+lineChart({xs,h:90,pad:[8,6,16,26],series:[{v:S.wbgt_max.slice(lo,hi+1),c:"#c4281f"},{v:S.pm10.slice(lo,hi+1).map(x=>x==null?null:x/6),c:"#8a8a8a",dash:"3 3"}],shade,marker:mk})+`<div class="legend"><span style="--c:#c4281f">WBGT max (°C)</span><span style="--c:#8a8a8a">PM10 ÷ 6</span></div>`;
+  }else{
+    const wk=S.weekly||S.monthly;const lab=S.week_dates||S.month_dates;const bands=S.weekly_band||S.monthly_band;
+    html=`<h3>${d} · ${D.granularity}</h3><div class="note">Role <b>${D.role_label}</b>: aggregated to ${D.granularity.split("-")[1]}ly counts with small-cell suppression (k=${D.k}) and coarse risk bands only. No daily counts, no evidence tables, no actions.</div><table><thead><tr><th>Period</th>${Object.keys(wk).map(s=>`<th class="n">${D.stream_names[s]}</th>`).join("")}<th>Risk band</th></tr></thead><tbody>`;
+    const startI=Math.max(0,Math.floor(day/(S.weekly?7:30))-6);const endI=Math.min(lab.length,startI+10);
+    for(let i=startI;i<endI;i++)html+=`<tr><td>${lab[i]}</td>${Object.keys(wk).map(s=>`<td class="n">${wk[s].suppressed[i]?`<span class="chip">&lt;${D.k}</span>`:wk[s].observed[i]}</td>`).join("")}<td><span class="pill" style="background:${bands[i]==="elevated"?"var(--act)":bands[i]==="watch"?"var(--watch)":"var(--ok)"}">${bands[i]}</span></td></tr>`;
+    html+="</tbody></table>";
+  }
+  c.innerHTML=html;
+}
+
+/* ---------- BACKTEST ---------- */
+function viewBacktest(app){
+  const B=D.backtest,P=B.prodrome,cfg=B.config;
+  const rows=[["Prodrome (fused, weather-adjusted)",P],["Daily single-stream threshold",B.daily_single_stream],["Weekly retrospective review",B.weekly_retrospective],["Prodrome without corroboration gate",B.no_corroboration_gate]];
+  const c=el("div",{className:"card"});
+  c.innerHTML=`<h2>Operational validation</h2><div class="mute small">${P.events} injected ground-truth events (4 hazard types, 8 districts) in the held-out test period ${cfg.test_period[0]} → ${cfg.test_period[1]}. Thresholds were calibrated once on 2023 to an <b>alert budget of ${cfg.alert_budget_fa_per_30d} false alert / 30 days</b> (system-wide) and then frozen. Every method below was calibrated to the same budget.</div>
+  <div class="kpi" style="margin:12px 0"><div><b>${pct(P.sensitivity)}</b><span>sensitivity (${P.detected}/${P.events} events)</span></div><div><b>${pct(P.ppv)}</b><span>positive predictive value (${P.alerts-P.false_alerts}/${P.alerts} alerts)</span></div><div><b>${fmt(P.fa_per_30d,2)}</b><span>false alerts per 30 days</span></div><div><b>${fmt(P.median_detection_delay_days,1)} d</b><span>median onset→alert delay</span></div><div><b>${pct(P.median_event_share_after_alert)}</b><span>of event still ahead when alert fires (median)</span></div></div>
+  <table><thead><tr><th>Method (same alert budget)</th><th class="n">Sensitivity</th><th class="n">PPV</th><th class="n">False alerts / 30d</th><th class="n">Delay (d)</th><th class="n">Event share ahead</th></tr></thead><tbody>${rows.map(([n,m],i)=>`<tr ${i===0?'style="font-weight:600"':""}><td>${n}</td><td class="n">${pct(m.sensitivity)}</td><td class="n">${pct(m.ppv)}</td><td class="n">${fmt(m.fa_per_30d,2)}</td><td class="n">${fmt(m.median_detection_delay_days,1)}</td><td class="n">${pct(m.median_event_share_after_alert)}</td></tr>`).join("")}</tbody></table>
+  <div class="note"><b>Alert fatigue, made visible:</b> a classic un-calibrated "3-sigma on any feed" rule detects ${pct(B.daily_single_stream.classic_3sigma.sensitivity)} of events but raises <b>${fmt(B.daily_single_stream.classic_3sigma.fa_per_30d,1)} false alerts every 30 days</b> (${B.daily_single_stream.classic_3sigma.false_alerts} false alerts in the test period) – the volume at which alerts get ignored. Prodrome's budgeted, corroborated approach delivers ${fmt(P.fa_per_30d,2)}. (Baselines were calibrated to the same budget on 2023, but the weekly review overshoots it on the test period at ${fmt(B.weekly_retrospective.fa_per_30d,1)}/30d.)</div>`;
+  app.append(c);
+  const g=el("div",{className:"grid g2",style:"margin-top:14px"});
+  const a=el("div",{className:"card"});a.innerHTML=`<h3>Sensitivity by hazard type</h3>`+Object.entries(B.strata.type).map(([k,v])=>`<div class="row" style="margin:6px 0"><div style="width:150px">${k.replace("_"," ")}</div><div class="bar" style="flex:1"><i style="width:${v.detected/v.n*100}%"></i></div><b>${v.detected}/${v.n}</b></div>`).join("")+`<h3 style="margin-top:14px">Sensitivity by signal strength</h3>`+Object.entries(B.strata.magnitude).map(([k,v])=>`<div class="row" style="margin:6px 0"><div style="width:150px">${k}</div><div class="bar" style="flex:1"><i style="width:${v.detected/v.n*100}%"></i></div><b>${v.detected}/${v.n}</b></div>`).join("")+`<div class="small mute" style="margin-top:8px">Strong events are caught reliably; misses concentrate in weak signals and small-count districts (e.g. 4 observed vs 3 expected visits) – a minimum-detectable-effect limit of any count-based surveillance, stated plainly.</div>`;
+  const b=el("div",{className:"card"});b.innerHTML=`<h3>Definitions &amp; data latency</h3><div class="small"><p><b>Detected</b>: ≥1 alert opened in the event's district within [onset−${cfg.match_tolerance_days[0]}d, end+${cfg.match_tolerance_days[1]}d]. <b>False alert</b>: any alert matching no event. <b>PPV</b> = matching alerts ÷ all alerts. <b>Delay</b> = alert date − event onset. <b>Event share ahead</b> = fraction of the event's duration remaining after the alert (the window in which prevention can still act).</p><p><b>Feed latency modelled</b>: ${Object.entries(D.latency).map(([k,v])=>`${k} ${v}d`).join(", ")}. The alert at day <i>t</i> uses only data reported by day <i>t</i>.</p><p><b>Weekly retrospective</b> = today's typical practice: Monday review of last week's totals per feed. Prodrome fires a median ${fmt(B.weekly_retrospective.median_detection_delay_days-P.median_detection_delay_days,1)} days earlier and keeps ${pct(P.median_event_share_after_alert)} vs ${pct(B.weekly_retrospective.median_event_share_after_alert)} of the event ahead.</p></div><div class="note">Honest caveat: events are <b>simulated</b> with known effect sizes; real-world performance depends on real data quality. The value of this back-test is the method, the comparison at equal alert budgets, and the stress tests – not the absolute numbers.</div>`;
+  g.append(a,b);app.append(g);
+}
+
+/* ---------- MISSING ---------- */
+function viewMissing(app){
+  const M=D.backtest.missing_input,base=M["Baseline (all feeds)"];
+  const c=el("div",{className:"card"});
+  c.innerHTML=`<h2>Behaviour when inputs are missing</h2><div class="mute small">Same frozen thresholds, same ${base.events} test events. Missing feeds are simply absent evidence: the CUSUM decays through gaps instead of inventing data, and corroboration still needs two independent feeds.</div>
+  <table style="margin-top:10px"><thead><tr><th>Scenario</th><th class="n">Sensitivity</th><th></th><th class="n">PPV</th><th class="n">False alerts / 30d</th><th class="n">Delay (d)</th></tr></thead><tbody>${Object.entries(M).map(([k,v])=>`<tr ${k.startsWith("Baseline")?'style="font-weight:600"':""}><td>${k}</td><td class="n">${pct(v.sensitivity)}</td><td style="width:140px"><div class="bar"><i style="width:${v.sensitivity*100}%"></i></div></td><td class="n">${v.alerts?pct(v.ppv):"–"}</td><td class="n">${fmt(v.fa_per_30d,2)}</td><td class="n">${fmt(v.median_detection_delay_days,1)}</td></tr>`).join("")}</tbody></table>
+  <div class="note"><b>Reading this:</b> losing the lab feed or the environmental feed costs almost nothing; 20% random daily gaps in every feed costs about 7 points of sensitivity; losing the <b>sickness-absence</b> feed hurts most (it is the main workplace corroborator). Latency doubling mostly delays alerts (median ${fmt(M["Reporting latency doubled"].median_detection_delay_days,0)} d). If <b>all clinical and lab feeds</b> are down the system correctly <b>fails silent</b>: workplace signals alone never alert, because the corroboration gate needs two feed families. Some "offline" rows show a higher PPV because the dropped feed was also a source of false alerts – small-sample noise, not a recommendation to drop feeds.</div>
+  <h3 style="margin-top:14px">Faulty-feed test (data artefacts, not outbreaks)</h3>
+  <div class="small">We injected a 5-day ×3 spike (e.g. a duplicated batch upload) into <b>one</b> feed of <b>one</b> district, ${D.robustness.trials} times, with no real event present. <b>${pct(D.robustness.no_gate_rate)}</b> of these glitches would page someone without cross-feed corroboration; with Prodrome's corroboration gate only <b>${pct(D.robustness.gate_rate)}</b> do (design limit ${pct(D.robustness.design_max)}, set on the 2023 calibration year, not the test period).</div>`;
+  app.append(c);
+}
+
+/* ---------- PRIVACY ---------- */
+function viewPrivacy(app){
+  const c=el("div",{className:"card"});
+  const roles=Object.entries(ROLES);
+  c.innerHTML=`<h2>Privacy by design</h2><div class="grid g2" style="margin-top:6px"><div><h3>Controls built in</h3><ul style="padding-left:18px;margin:0">
+  <li><b>Aggregate-only schema</b> – district × day counts. There is no person, employer-name, ID or GPS field; a schema guard raises an error if one ever appears.</li>
+  <li><b>Small-cell suppression</b> – any displayed count of 1–${D.k-1} (k=${D.k}; k=10 for broader roles) is replaced by "&lt;k". Complementary suppression prevents back-calculation from totals.</li>
+  <li><b>Role-based payloads</b> – each role's data file contains <i>only</i> what it is entitled to. Enforced by construction on the server side: the browser never receives data it must hide.</li>
+  <li><b>Coarser granularity for broader audiences</b> – employer view is weekly (k=10), policy view is monthly (k=10), with risk bands instead of counts.</li>
+  <li><b>Purpose limitation</b> – outputs are explicitly barred from individual employment, disciplinary, immigration, visa or insurance use. Alerts name a <i>district and hazard</i>, never a worker or employer.</li>
+  <li><b>Missing geolocation tolerated</b> – detection works at district level; no precise coordinates are needed.</li></ul></div>
+  <div><h3>Role matrix</h3><table><thead><tr><th>Role</th><th>Granularity</th><th class="n">k</th><th>Counts</th><th>Actions</th></tr></thead><tbody>${roles.map(([k,v])=>`<tr><td>${v.label}</td><td>${v.granularity}</td><td class="n">${v.k}</td><td>${v.can_see_counts?"yes":"bands only"}</td><td>${v.actions?"yes":"no"}</td></tr>`).join("")}</tbody></table><div class="small mute" style="margin-top:8px">Switch the <b>View as</b> selector (top) to see the dashboard re-render with each role's actual payload.</div></div></div>`;
+  app.append(c);
+  // suppression stats for current role
+  const S=D.series;const first=S[D.districts[0].name];
+  if(first.streams){
+    let tot=0,sup=0;const per=[];D.districts.forEach(d=>{let t=0,s=0;Object.values(S[d.name].streams).forEach(v=>{v.suppressed.forEach(f=>{t++;if(f)s++})});tot+=t;sup+=s;per.push([d.name,s/t])});
+    const c2=el("div",{className:"card",style:"margin-top:14px"});c2.innerHTML=`<h3>Small-cell suppression in your current view (k=${D.k})</h3><div class="small mute">Share of district-day cells hidden because the count is 1–${D.k-1}. Small districts are protected most; large ones are almost fully visible.</div>`+per.map(([n,f])=>`<div class="row" style="margin:5px 0"><div style="width:150px">${n}</div><div class="bar" style="flex:1"><i style="width:${f*100}%;background:var(--amber)"></i></div><b style="width:48px;text-align:right">${pct(f)}</b></div>`).join("")+`<div class="small mute">Overall ${pct(sup/tot)} of cells suppressed. Detection itself runs in the secure aggregate layer; only the <i>published</i> views are suppressed.</div>`;app.append(c2);
+  }
+}
+
+/* ---------- IMPACT ---------- */
+function viewImpact(app){
+  const I=D.impact,T=I.total_excess,AP=I.after_prodrome,AW=I.after_weekly;const e=state.eff;
+  const c=el("div",{className:"card"});
+  c.innerHTML=`<h2>Health &amp; resilience impact</h2><div class="mute small">Of all excess illness visits, incidents and lost workdays across the ${D.backtest.prodrome.events} test events, how much was still ahead when each method raised its first alert – and what a modest prevention effect would avert.</div>
+  <div class="ctrl" style="margin:12px 0"><b>Assumed intervention effectiveness on remaining burden:</b><input id="eff" type="range" min="0" max="80" value="${e*100}" style="width:220px"><b id="effv">${Math.round(e*100)}%</b></div>
+  <table><thead><tr><th>Outcome (simulated excess, test period)</th><th class="n">Total excess</th><th class="n">Still ahead – Prodrome</th><th class="n">Still ahead – weekly review</th><th class="n">Averted – Prodrome</th><th class="n">Averted – weekly</th><th class="n">Extra averted by Prodrome</th></tr></thead><tbody id="imp"></tbody></table>
+  <div class="note">All figures derive from the <b>simulated</b> events' known excess burden and an <b>assumed</b> effectiveness you can change. They illustrate earlier action turning into fewer high-severity incidents, less sickness absence and lost workdays; they are not a forecast. Lost workdays assume one absence episode ≈ one lost workday.</div>
+  <h3 style="margin-top:14px">Evidence for policy &amp; regulatory action</h3><div class="small">Every alert stores district, period, signals, weather-adjusted expected vs observed counts and the playbook action taken. Aggregated monthly, this gives regulators a defensible evidence trail – e.g. repeated heat-stress clusters in the same district-month supports an OSH inspection programme or a revised midday-work-ban enforcement plan – without exposing any individual.</div>`;
+  app.append(c);
+  const draw=()=>{const k=state.eff;const rows=[["Illness clinic visits","visits"],["Workplace incidents","incidents"],["Lost workdays (absence)","workdays"]];
+    $("#imp").innerHTML=rows.map(([n,key])=>`<tr><td>${n}</td><td class="n">${Math.round(T[key]).toLocaleString()}</td><td class="n">${Math.round(AP[key]).toLocaleString()}</td><td class="n">${Math.round(AW[key]).toLocaleString()}</td><td class="n"><b>${Math.round(AP[key]*k).toLocaleString()}</b></td><td class="n">${Math.round(AW[key]*k).toLocaleString()}</td><td class="n"><b>+${Math.round((AP[key]-AW[key])*k).toLocaleString()}</b></td></tr>`).join("");$("#effv").textContent=Math.round(k*100)+"%"};
+  $("#eff").oninput=ev=>{state.eff=ev.target.value/100;draw()};draw();
+}
+
+/* ---------- ABOUT ---------- */
+function viewAbout(app){
+  const c=el("div",{className:"card"});
+  c.innerHTML=`<h2>How Prodrome works</h2>
+  <ol style="padding-left:18px;margin:0;line-height:1.7">
+  <li><b>Multi-signal inputs (district × day)</b>: clinic visits (heat illness, GI, respiratory), laboratory GI positives, sickness-absence episodes, workplace incident reports – plus <b>real</b> environmental data (work-hours WBGT proxy and PM10 from Open-Meteo). Service, laboratory, workplace and environmental data are materially different signal types with different latencies.</li>
+  <li><b>Weather-adjusted baselines</b>: a quasi-Poisson model per district and feed (day-of-week, annual seasonality, heat dose, dust), refit every 14 days on the trailing year with past outbreaks down-weighted. A heat-wave that merely raises heat clinic visits as expected does not alarm.</li>
+  <li><b>Evidence accumulation</b>: a Poisson log-likelihood-ratio CUSUM per feed – the statistically efficient way to notice a persistent rise in low counts. Log-likelihoods add across independent feeds into a single fused evidence score.</li>
+  <li><b>Corroboration gate + alert budget</b>: an alert needs the fused score over a threshold <i>and</i> ≥2 elevated feeds from ≥2 families. One master threshold is calibrated so the whole system stays within ≈1 false alert per 30 days, and the corroboration strictness is chosen so that ≤30% of single-feed data glitches can raise an alert.</li>
+  <li><b>Explain &amp; act</b>: contribution per feed, observed vs expected, share explained by weather, hazard-signature match, a three-tier proportionate action (Watch / Advisory / Action) and the responsible role – with assumptions listed.</li>
+  <li><b>Privacy</b>: aggregate-only, small-cell suppression, role-based payloads, purpose limitation.</li></ol>
+  <div class="note"><b>Limitations (stated up front):</b> health, absence and incident data are simulated because no data was supplied; the real weather is genuine but the link between it and illness is modelled, not observed. Spatial resolution is district-level; no sub-district cluster scan. Event effect sizes are chosen by the author. Performance on real data will differ and must be validated in a pilot with data-sharing agreements and a clinical-governance review. Prodrome supports decisions; it does not diagnose, and a named human role verifies every alert.</div>
+  <div class="small mute">Environmental data: Open-Meteo (CC BY 4.0). Source code and documentation accompany this submission.</div>`;
+  app.append(c);
+}
+init();
+</script>
+</body>
+</html>
