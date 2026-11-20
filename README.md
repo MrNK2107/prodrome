@@ -7,7 +7,7 @@ signals at district level to raise an **explainable, privacy-preserving, alert-b
 recommends a *proportionate* preventive action and the *responsible role*, with the evidence and assumptions shown.
 
 - **Live dashboard:** https://mrnk2107.github.io/prodrome/ (no login; pick a role under "View as")
-- **Demo video:** [`video/Prodrome_demo.mp4`](video/Prodrome_demo.mp4) (3:31)
+- **Demo video (2:51):** https://mrnk2107.github.io/prodrome/demo.mp4
 - **Submission deck:** [`submission/Prodrome_FutureHealth_Submission.pdf`](submission/Prodrome_FutureHealth_Submission.pdf)
 - Run locally: `cd web && python -m http.server 8765`, then open http://localhost:8765
 - Full technical documentation: [`docs/TECHNICAL_DOCUMENTATION.md`](docs/TECHNICAL_DOCUMENTATION.md)
